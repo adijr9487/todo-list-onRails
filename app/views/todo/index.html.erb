@@ -1,0 +1,24 @@
+<div style='margin: auto; width: 500px'>
+<%if @todo.blank? %>
+  <h2>Empty Todo List</h2>
+<%else%>
+<% @todo.each do |t|%>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <label style='font-size: 0.7rem'>Title</label>
+    <h5 class="card-title"><%= t.title %></h5>
+    <label style='font-size: 0.7rem'>Description</label>
+    <p class="card-text"><%= t.description %></p>
+    <label style='font-size: 0.7rem'>Status</label>
+    <p class="card-text"><%= t.status ? 'Complete' : 'Pending' %></p>
+    <label style='font-size: 0.7rem'>Deadline</label>
+    <p class="card-text"><%= t.deadline %></p>
+    <%= link_to 'Delete', users_todo_path(t), :class=>'btn btn-primary', data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?",
+    }%>
+  </div>
+</div>
+<%end%>
+<% end %>
+</div>
