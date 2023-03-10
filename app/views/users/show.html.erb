@@ -3,4 +3,32 @@
 
 <%= link_to 'Create Todo', new_users_todo_path, :class=>'btn btn-primary'%>
 <%= link_to 'View Todo', users_todo_index_path, :class=>'btn btn-primary'%>
+<hr>
+<%= form_with model: @create_task, url: users_task_index_path do |form| %>
+    <div style="margin-bottom: 10px;">
+        <%= form.label :action, :class=>'form-label' %><br>
+        <%= form.text_field :action, :class=>'form-control' %>
+        <% @create_task.errors.full_messages_for(:action).each do |msg|%>
+            <div><% msg %></div>
+        <%end%>
+    </div>
+    <div>
+        <%= form.submit %>
+    </div>
+<%end%>
+
+    <hr>
+    <div class="card">
+    <ul class="list-group list-group-flush" style='width: 100%;'>
+        <%@task.each do |t|%>
+            <li class="list-group-item" style='display: flex; justify-content: space-between; align-item: center; width: 100%;'>
+            <p><%=t.action%></p>
+                <%= link_to 'Delete', users_task_path(t), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: 'Are you sure want to delete'
+                }%>
+            </li>
+        <%end%>
+    </ul>
+    </div>
 </div>

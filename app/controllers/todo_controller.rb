@@ -6,7 +6,7 @@ class TodoController < ApplicationController
     if @todo.save
       redirect_to users_todo_index_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

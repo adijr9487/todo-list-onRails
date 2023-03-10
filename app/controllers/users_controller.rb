@@ -12,6 +12,8 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @task = Task.where(user_id: current_user.id)
+    @create_task = Task.new
   end
 
   def authenticate_user!

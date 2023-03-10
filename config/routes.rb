@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
   resource :users do
     resources :todo
+    resources :task
   end
+
 end
